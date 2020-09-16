@@ -1,18 +1,26 @@
 {
     "Serilog": {
+        "LevelSwitches": {
+            "$consoleSwitch": "Verbose",
+            "$fileSwitch": "Verbose"
+        },
         "Using": [
             "Serilog.Sinks.Console",
             "Serilog.Sinks.File"
         ],
-        "MinimumLevel": "Debug",
+        "MinimumLevel": "Verbose",
         "WriteTo": [
             {
-                "Name": "Console"
+                "Name": "Console",
+                "Args": {
+                    "levelSwitch": "$consoleSwitch"
+                }
             },
             {
                 "Name": "File",
                 "Args": {
-                    "path": "Logs/log.txt"
+                    "path": "Logs/log.txt",
+                    "levelSwitch": "$fileSwitch"
                 }
             }
         ]

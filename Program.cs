@@ -10,7 +10,7 @@ class Program
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("serilog.json")
+            .AddJsonFile(path: "serilog.json", optional: false, reloadOnChange: true)
             .Build();
 
         var log = new LoggerConfiguration()
