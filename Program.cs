@@ -8,11 +8,14 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        // load serilog.json to IConfiguration
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile(path: "serilog.json", optional: false, reloadOnChange: true)
+            // reloadOnChange will allow you to auto reload the minimum level and level switches
+            .AddJsonFile(path: "serilog.json", optional: false, reloadOnChange: true) 
             .Build();
 
+        // build Serilog logger from IConfiguration
         var log = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
